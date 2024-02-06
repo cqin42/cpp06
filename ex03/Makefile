@@ -1,8 +1,8 @@
-NAME = ScalarConverter
+NAME = Base
 
 CC = c++
 
-SRC = main.cpp ScalarConverter.cpp
+SRC = main.cpp Base.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

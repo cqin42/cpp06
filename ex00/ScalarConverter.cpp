@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christine <christine@student.42.fr>        +#+  +:+       +#+        */
+/*   By: cqin <cqin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:09:33 by cqin              #+#    #+#             */
-/*   Updated: 2024/02/06 07:54:27 by christine        ###   ########.fr       */
+/*   Updated: 2024/02/08 13:41:40 by cqin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,44 +162,61 @@ void		ScalarConverter::toInt(std::string str)
 	else
 		std::cout << "char: " << static_cast<char>(i) << std::endl;
 	std::cout << "int: " << i << std::endl;
-	std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(i) << std::endl;
+	std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
 }
 
 void		ScalarConverter::toFloat(std::string str)
 {
 	char *endptr;
-	float value = strtof(str.c_str() + 1, &endptr);
+	float value = strtof(str.c_str(), &endptr);
 
 	float f = static_cast<float>(value);
-	if (str[0] == '-')
-		f *= -1;
+
+	size_t pos = str.find(".");
+	int		nbValue = 0;
+
+	if (pos != std::string::npos)
+	{
+		for (size_t i = pos + 1; i < str.length(); i++)
+		{
+			nbValue++;
+		}
+		nbValue--;
+	}
+
 
 	if (endptr == str || *(endptr + 1) != '\0' || f > std::numeric_limits<float>::max() || f < -std::numeric_limits<float>::max())
 		throw invalidArgument();
-
 
 	if (!isprint(static_cast<char>(f)))
 		std::cout << "char: no displayable" << std::endl;
 	else
 		std::cout << "char: " << static_cast<char>(f) << std::endl;
 	std::cout << "int: " << static_cast<int>(f) << std::endl;
-	std::cout << "float: " << f << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(f) << std::endl;
+	std::cout << std::fixed << std::setprecision(nbValue) << "float: " << f << "f" << std::endl;
+	std::cout << std::fixed << std::setprecision(nbValue) << "double: " << static_cast<double>(f) << std::endl;
 }
 
 void		ScalarConverter::toDouble(std::string str)
 {
 	char *endptr;
 	double value = strtod(str.c_str(), &endptr);
-	if (str[0] == '-')
-		value = strtod(str.c_str() + 1, &endptr);
-
 	double d = static_cast<double>(value);
-	if (str[0] == '-')
-		d *= -1;
 
-	if (endptr == str || *(endptr + 1) != '\0'|| d > std::numeric_limits<double>::max() || d < -std::numeric_limits<double>::max())
+	size_t pos = str.find(".");
+	int		nbValue = 0;
+
+	if (pos != std::string::npos)
+	{
+		for (size_t i = pos + 1; i < str.length(); i++)
+		{
+			nbValue++;
+		}
+		// nbValue--;
+	}
+
+	if (endptr == str || *(endptr) != '\0' || d > std::numeric_limits<double>::max() || d < -std::numeric_limits<double>::max())
 		throw invalidArgument();
 
 	if (!isprint(static_cast<char>(d)))
@@ -207,8 +224,8 @@ void		ScalarConverter::toDouble(std::string str)
 	else
 		std::cout << "char: " << static_cast<char>(d) << std::endl;
 	std::cout << "int: " << static_cast<int>(d) << std::endl;
-	std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
-	std::cout << "double: " << d << std::endl;
+	std::cout << std::fixed << std::setprecision(nbValue) << "float: " << static_cast<float>(d) << "f" << std::endl;
+	std::cout << std::fixed << std::setprecision(nbValue) << "double: " << d << std::endl;
 }
 
 void        ScalarConverter::convert(std::string strToConvert)

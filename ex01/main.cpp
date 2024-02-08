@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christine <christine@student.42.fr>        +#+  +:+       +#+        */
+/*   By: cqin <cqin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 08:28:07 by christine         #+#    #+#             */
-/*   Updated: 2024/02/06 08:32:29 by christine        ###   ########.fr       */
+/*   Updated: 2024/02/08 13:46:51 by cqin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,6 @@ int main()
 		std::cout << "Successful" << std::endl;
 	else
 		std::cout << "Failed" << std::endl;
+
+	std::cout << deserialize->c  << std::endl;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: christine <christine@student.42.fr>        +#+  +:+       +#+        */
+/*   By: cqin <cqin@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:09:36 by cqin              #+#    #+#             */
-/*   Updated: 2024/02/06 06:57:23 by christine        ###   ########.fr       */
+/*   Updated: 2024/02/08 13:34:34 by cqin             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <limits>
 #include <stdlib.h>
+#include <iomanip>
 
 class ScalarConverter
 {
